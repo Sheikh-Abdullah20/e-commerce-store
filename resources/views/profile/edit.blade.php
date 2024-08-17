@@ -6,7 +6,7 @@ Edit Profile
 
 
 @section('content')
-
+    <x-alert/>
 <section class="content-main">
     <div class="content-header">
         <div>

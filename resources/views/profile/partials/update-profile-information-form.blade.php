@@ -42,24 +42,30 @@
             <x-text-input id="email" name="email" type="email" class="mb-2" :value="old('email', $user->email)" required autocomplete="username" />
             <x-input-error class="mb-2" :messages="$errors->get('email')" />
 
-            @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
-                <div>
-                    <p class="text-sm mt-2 text-gray-800">
-                        {{ __('Your email address is unverified.') }}
-
-                        <button form="send-verification" class="btn btn-primary">
-                            {{ __('Click here to re-send the verification email.') }}
-                        </button>
-                    </p>
-
-                    @if (session('status') === 'verification-link-sent')
-                        <p class="mt-2 text-dark">
-                            {{ __('A new verification link has been sent to your email address.') }}
-                        </p>
-                    @endif
-                </div>
-            @endif
+         
         </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
+                    <div>
+                        <p class="text-sm mt-2">
+                            {{ __('Your email address is unverified.') }}
+    
+                            <button form="send-verification" class="btn btn-primary text-dark">
+                                {{ __('Click here to re-send the verification email.') }}
+                            </button>
+                        </p>
+    
+                        @if (session('status') === 'verification-link-sent')
+                            <p class="mt-2 text-dark">
+                                {{ __('A new verification link has been sent to your email address.') }}
+                            </p>
+                        @endif
+                    </div>
+                @endif
+                </div>
+            </div>
 
         <div class="d-flex align-items-center">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
@@ -75,6 +81,7 @@
             @endif
         </div>
 
+        
 
     </form>
 </section>
