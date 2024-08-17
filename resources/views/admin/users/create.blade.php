@@ -20,7 +20,7 @@ Create-user
                 @csrf
                 <div class="mb-3">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control " placeholder='Name' name="name" id="name" value="{{ old('name') }}">
+                    <input type="text" class="form-control "  name="name" id="name" value="{{ old('name') }}">
                     @error('name')
                             <span class="text-danger">{{ $message }}</span>
                     @enderror
@@ -28,7 +28,7 @@ Create-user
 
                 <div class="mb-3">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control " placeholder='Email' name="email" id="email" value="{{ old('email') }}">
+                    <input type="email" class="form-control "  name="email" id="email" value="{{ old('email') }}">
                     @error('email')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
@@ -36,7 +36,7 @@ Create-user
                 
                 <div class="mb-3">
                     <label for="password">Password</label>
-                    <input type="password" class="form-control " placeholder='password' name="password" id="password" >
+                    <input type="password" class="form-control "  name="password" id="password" >
                     @error('password')
                          <span class="text-danger">{{ $message }}</span>
                     @enderror
@@ -44,7 +44,7 @@ Create-user
 
                 <div class="mb-3">
                     <label for="password_confirmation">Confirm Password</label>
-                    <input type="password" class="form-control " placeholder='password' name="password_confirmation" id="password_confirmation" >
+                    <input type="password" class="form-control " name="password_confirmation" id="password_confirmation" >
                     @error('password_confirmation')
                             <span class="text-danger">{{ $message }}</span>
                     @enderror

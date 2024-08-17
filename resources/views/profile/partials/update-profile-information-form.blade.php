@@ -23,7 +23,7 @@
             @isset($user->profile)
             <img class="img-lg mb-3 img-avatar" id="img" src="{{ asset('storage/'. $user->profile) }}" alt="User Photo" />
             @else
-            <img class="img-lg mb-3 img-avatar" id="img" src="assets2/imgs/people/avatar-1.png" alt="User Photo" />
+            <img class="img-lg mb-3 img-avatar" id="img" src="{{ asset('images/Add_image2.jpg') }}" alt="User Photo" />
             @endisset
             <figcaption>
                 <button id="upload_button" class="btn btn-light rounded font-md"> <i class="icons material-icons md-backup font-md"></i> Upload </button>

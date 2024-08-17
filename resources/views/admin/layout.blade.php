@@ -38,58 +38,38 @@
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a class="menu-link" href="page-products-list.html">
+                        <a class="menu-link" href="{{ route('products.index') }}">
                             <i class="icon material-icons md-shopping_bag"></i>
                             <span class="text">Products</span>
                         </a>
                     </li>
-                    <li class="menu-item has-submenu">
-                        <a class="menu-link" href="page-sellers-cards.html">
+                    <li class="menu-item">
+                        <a class="menu-link" href="{{ route('categories.index') }}">
                             <i class="icon material-icons md-store"></i>
                             <span class="text">Categories</span>
                         </a>
-                        <div class="submenu">
+
+                        {{-- <div class="submenu">
                            @foreach ($categories as $category )
-                           <a href="page-sellers-list.html">{{ $category->category_name }}</a>
+                           <a href="{{ route('categories.index') }}">{{ $category->category_name }}</a>
                            @endforeach
-                        </div>
+                        </div> --}}
                     </li>
                     <li class="menu-item">
-                        <a class="menu-link" href="page-form-product-1.html">
+                        <a class="menu-link" href="{{ route('products.create') }}">
                             <i class="icon material-icons md-add_box"></i>
                             <span class="text">Add product</span>
                         </a>
                     </li>
                     <li class="menu-item {{ Request()->is('users.index') ? 'active' : '' }}">
                         <a class="menu-link" href="{{ route('users.index') }}">
-                            <i class="icon material-icons md-monetization_on"></i>
+                            <i class="icon material-icons md-person"></i>
                             <span class="text">Users</span>
                         </a>
                     </li>
 
                   
-                </ul>
-                <hr />
-                <ul class="menu-aside">
-                    <li class="menu-item has-submenu">
-                        <a class="menu-link" href="#">
-                            <i class="icon material-icons md-settings"></i>
-                            <span class="text">Settings</span>
-                        </a>
-                        <div class="submenu">
-                            <a href="page-settings-1.html">Setting sample 1</a>
-                            <a href="page-settings-2.html">Setting sample 2</a>
-                        </div>
-                    </li>
-                    <li class="menu-item">
-                        <a class="menu-link" href="page-blank.html">
-                            <i class="icon material-icons md-local_offer"></i>
-                            <span class="text"> Starter page </span>
-                        </a>
-                    </li>
-                </ul>
-                <br />
-                <br />
+                </ul>    
             </nav>
         </aside>
         <main class="main-wrap">
@@ -135,19 +115,7 @@
             {{-- Main Content --}}
             @yield('content')
             {{-- Main Content End --}}
-            <footer class="main-footer font-xs">
-                <div class="row pb-30 pt-15">
-                    <div class="col-sm-6">
-                        <script>
-                            document.write(new Date().getFullYear());
-                        </script>
-                        &copy; Nest - HTML Ecommerce Template .
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="text-sm-end">All rights reserved</div>
-                    </div>
-                </div>
-            </footer>
+          
         </main>
         <script src="{{ asset('assets2/js/vendors/jquery-3.6.0.min.js') }}"></script>
         <script src="{{ asset('assets2/js/vendors/bootstrap.bundle.min.js') }}"></script>
