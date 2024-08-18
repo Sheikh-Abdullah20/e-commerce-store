@@ -37,7 +37,7 @@ Create - Product
                 <div class="mb-3">
                     <label for="exampleFormControlTextarea1">Product Details</label>
                     <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3">{{ old('description') }}</textarea>
-                    @error('descripiton')
+                    @error('description')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>

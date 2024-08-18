@@ -65,7 +65,7 @@ Products
                           <form action="{{ route('products.destroy',$product) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type=submit class="btn btn-sm font-sm btn-light rounded"> <i class="material-icons md-delete_forever"></i> Delete </button>
+                            <button type=submit onclick="return confirm('Are You Sure You Want To Delete This Product?')" class="btn btn-sm font-sm btn-light rounded"> <i class="material-icons md-delete_forever"></i> Delete </button>
                           </form>
                         </div>
                        

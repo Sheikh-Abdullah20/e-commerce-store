@@ -16,14 +16,20 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
     // User Routes
-    Route::get('/',[userController::class, 'index'])->name('home');
+    Route::group(['middleware' => ['role:user|admin']], function(){
+        Route::get('/',[userController::class, 'index'])->name('home');
+    });
 
     // Admin Routes
-    Route::get('/admin',[adminController::class, 'index'])->name('admin');
-    Route::resource('/users',AllUserController::class);
-    Route::resource('/categories',CategoryController::class);
-    Route::resource('/products',ProductController::class);
+    Route::group(['middleware' => ['role:admin']], function(){
+            Route::get('/admin',[adminController::class, 'index'])->name('admin');
+            Route::resource('/users',AllUserController::class);
+            Route::resource('/categories',CategoryController::class);
+            Route::resource('/products',ProductController::class);
+    }); 
+
 });
 
 require __DIR__.'/auth.php';

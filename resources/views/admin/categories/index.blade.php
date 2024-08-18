@@ -29,6 +29,7 @@ Categories
                   <tr>
                     <th scope="col">Id</th>
                     <th scope="col">Category - Name</th>
+                    <th scope="col">Category - Image</th>
                     <th scope="col">Actions</th>
                   </tr>
                 </thead>
@@ -40,12 +41,15 @@ Categories
                   <tr>
                     <th scope="row">{{ $count }}</th>
                     <td>{{ $category->category_name }}</td>
+                    <td>
+                      <img src="{{ asset('storage/' . $category->category_image) }}" alt="" style="width: 50px;clip-path: circle()">
+                    </td>
                     <td class="d-flex justify-content-center">
                       <a href="{{ route('categories.edit',$category->id) }}" class="btn btn-primary text-dark">Update</a>
                       <form action="{{ route('categories.destroy',$category->id) }}" method="POST">
                         @csrf
                         @method("DELETE")
-                        <button type="submit" class="btn btn-danger mx-3 w-100">Delete</button>
+                        <button type="submit" onclick="return confirm('Are You Sure You Want To Delete This Category?')  " class="btn btn-danger mx-3 w-100">Delete</button>
                       </form>
                     </td>
                   </tr>

@@ -77,6 +77,15 @@ class ProductController extends Controller
 
     public function update(Request $request, string $id)
     {   
+
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required|min:20',
+            'price' => 'required',
+            'category' => 'required',
+            'product_image' => 'mimes:jpg,jpeg,png'
+        ]);
+
         $product = Product::find($id);
         if($request->product_image){
             if($product->product_image && file_exists(public_path('storage/'.$product->product_image))){

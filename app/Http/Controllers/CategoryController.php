@@ -29,12 +29,20 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+
+
         $request->validate([
             'name' => 'required|min:3',
+            'image' => 'required|mimes:png,jpg,jpeg'
         ]);
+
+        if($request->hasFile('image')){     
+            $path = $request->file('image')->store('category_images','public');
+        }
 
         $category = Category::create([
             'category_name' => $request->name,
+            'category_image' => $path
         ]);
 
         if ($category) {
@@ -68,15 +76,29 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'image' => 'required|mimes:jpeg,jpg,png'
         ]);
 
         $category = Category::find($id);
         if ($category) {
-            $updated = $category->update([
+
+            if($category->category_image && file_exists(public_path('storage/'.$category->category_image))){
+                $path = public_path('storage/'.$category->category_image);
+                if(file_exists($path)){
+                    unlink($path);
+                }
+            }
+
+            if($request->hasFile('image')){     
+                $currentPath = $request->file('image')->store('category_image','public');
+            }
+    
+            $category->update([
                 'category_name' => $request->name,
+                'category_image' => $currentPath
             ]);
 
-            if ($updated) {
+            if ($category) {
                 return redirect()->route('categories.index')->with('success', 'Category updated successfully');
             } else {
                 return redirect()->route('categories.index')->with('success', 'Category Not updated ');
