@@ -94,7 +94,7 @@ Products
   <script>
     $(document).ready(function() {
     $('#categoryFilter').change(function() {
-        $(this).closest('form').submit(); // Automatically submit the form when the category changes
+        $(this).closest('form').submit();
     });
 });
 

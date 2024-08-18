@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Nest - Home</title>
+    <title>Nest - Search</title>
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -12,10 +12,10 @@
     <meta property="og:url" content="" />
     <meta property="og:image" content="" />
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="assets/imgs/theme/favicon.svg" />
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/imgs/theme/favicon.svg') }}" />
     <!-- Template CSS -->
-    <link rel="stylesheet" href="assets/css/plugins/animate.min.css" />
-    <link rel="stylesheet" href="assets/css/main.css?v=6.0" />
+    <link rel="stylesheet" href="{{ asset('assets/css/plugins/animate.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/main.css?v=6.0') }}" />
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
 
     <style>
@@ -28,59 +28,7 @@
 </head>
 
 <body>
-    {{-- <!-- Modal -->
-    <div class="modal fade custom-modal" id="onloadModal" tabindex="-1" aria-labelledby="onloadModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                <div class="modal-body">
-                    <div class="deal" style="background-image: url('assets/imgs/banner/popup-1.png')">
-                        <div class="deal-top">
-                            <h6 class="mb-10 text-brand-2">Deal of the Day</h6>
-                        </div>
-                        <div class="deal-content detail-info">
-                            <h4 class="product-title"><a href="shop-product-right.html" class="text-heading">Organic
-                                    fruit for your family's health</a></h4>
-                            <div class="clearfix product-price-cover">
-                                <div class="product-price primary-color float-left">
-                                    <span class="current-price text-brand">$38</span>
-                                    <span>
-                                        <span class="save-price font-md color3 ml-15">26% Off</span>
-                                        <span class="old-price font-md ml-15">$52</span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="deal-bottom">
-                            <p class="mb-20">Hurry Up! Offer End In:</p>
-                            <div class="deals-countdown pl-5" data-countdown="2025/03/25 00:00:00">
-                                <span class="countdown-section"><span class="countdown-amount hover-up">03</span><span
-                                        class="countdown-period"> days </span></span><span
-                                    class="countdown-section"><span class="countdown-amount hover-up">02</span><span
-                                        class="countdown-period"> hours </span></span><span
-                                    class="countdown-section"><span class="countdown-amount hover-up">43</span><span
-                                        class="countdown-period"> mins </span></span><span
-                                    class="countdown-section"><span class="countdown-amount hover-up">29</span><span
-                                        class="countdown-period"> sec </span></span>
-                            </div>
-                            <div class="product-detail-rating">
-                                <div class="product-rate-cover text-end">
-                                    <div class="product-rate d-inline-block">
-                                        <div class="product-rating" style="width: 90%"></div>
-                                    </div>
-                                    <span class="font-small ml-5 text-muted"> (32 rates)</span>
-                                </div>
-                            </div>
-                            <a href="shop-grid-right.html" class="btn hover-up">Shop Now <i
-                                    class="fi-rs-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-    <!-- Quick view -->
+
     <header class="header-area header-style-1 header-height-2">
         <div class="mobile-promotion">
             <span>Grand opening, <strong>up to 15%</strong> off all items. Only <strong>3 days</strong> left</span>
@@ -100,14 +48,13 @@
                                 <select id="categoryFilter" name="category" class="select-active">
                                     <option value="">All Categories</option>
                                     @foreach ($categories as $category )
-                                    <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                                    <option value="{{ $category->id }}" {{ $SelectedCategoryID == $category->id ? 'selected' : ''}}>{{ $category->category_name }}</option>
                                     @endforeach
                                 </select>
                                 <input type="text" placeholder="Search for items..." name="search" />
                                 <button class="btn" style="background-color: rgb(33, 66, 30) !important;color:white !important;">Search</button>
                             </form>
                         </div>
-
                         <div class="header-action-right">
                             <div class="header-action-2">
                                 <div class="search-location">
@@ -141,11 +88,6 @@
                                 </div>
                             </div>
                         </div>
-                        
-
-                        
-
-
                     </div>
                 </div>
             </div>
@@ -173,8 +115,8 @@
             </div>
             <div class="mobile-header-content-area">
                 <div class="mobile-search search-style-3 mobile-header-border">
-                    <form action="{{ route('search.product') }}" method="GET">
-                        <input type="text" placeholder="Search for items…"  name="search"/>
+                    <form action="{{ route('search.product') }}">
+                        <input type="text" placeholder="Search for items…" name="search"/>
                         <button type="submit"><i class="fi-rs-search"></i></button>
                     </form>
                 </div>
@@ -185,6 +127,7 @@
                             <li class="menu-item-has-children">
                                 <a href="{{ route('home') }}">Home</a>
                             </li>
+
                             <li class="menu-item-has-children">
                                 <a href="{{ route('myaccount.profile') }}">Account</a>
                             </li>
@@ -212,115 +155,18 @@
         </div>
     </div>
     <!--End header-->
-    <x-alert/>
        <main class="main">
-    <section class="home-slider position-relative mb-30">
-    <div class="container">
-        <div class="home-slide-cover mt-30">
-            <div class="hero-slider-1 style-4 dot-style-1 dot-style-1-position-1">
-                <div class="single-hero-slider single-animation-wrap"
-                    style="background-image: url(assets/imgs/slider/slider-1.png)">
-                    <div class="slider-content">
-                        <h1 class="display-2 mb-40">
-                            Don’t miss amazing<br />
-                            grocery deals
-                        </h1>
-                        <p class="mb-65">Sign up for the daily newsletter</p>
-                        <form class="form-subcriber d-flex">
-                            <input type="email" placeholder="Your emaill address" />
-                            <button class="btn" type="submit">Subscribe</button>
-                        </form>
-                    </div>
-                </div>
-                <div class="single-hero-slider single-animation-wrap"
-                    style="background-image: url(assets/imgs/slider/slider-2.png)">
-                    <div class="slider-content">
-                        <h1 class="display-2 mb-40">
-                            Fresh Vegetables<br />
-                            Big discount
-                        </h1>
-                        <p class="mb-65">Save up to 50% off on your first order</p>
-                        <form class="form-subcriber d-flex">
-                            <input type="email" placeholder="Your emaill address" />
-                            <button class="btn" type="submit">Subscribe</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="slider-arrow hero-slider-1-arrow"></div>
-        </div>
-    </div>
-</section>
-<!--End hero slider-->
-<section class="popular-categories section-padding">
-    <div class="container wow animate__animated animate__fadeIn">
-        <div class="section-title">
-            <div class="title">
-                <h3>Featured Categories</h3>
-               
-            </div>
-            <div class="slider-arrow slider-arrow-2 flex-right carausel-10-columns-arrow"
-                id="carausel-10-columns-arrows"></div>
-        </div>
-        <div class="carausel-10-columns-cover position-relative">
-            <div class="carausel-10-columns" id="carausel-10-columns">
-                @foreach($products_In_Category as $category)
-                <div class="card-2 bg-9 wow animate__animated animate__fadeInUp" data-wow-delay=".1s">
-                    <figure class="img-hover-scale overflow-hidden">
-                        <a href="{{ route('category.products',$category->id) }}"><img src="{{ asset('storage/' . $category->category_image) }}" alt="" /></a>
-                    </figure>
-                    <h6><a href="{{ route('category.products',$category->id) }}">{{ $category->category_name }}</a></h6>
-                    <span>{{ $category->products->count() }} items</span>
-                </div>
-                @endforeach
-               
-             
-            </div>
-        </div>
-    </div>
-</section>
-<!--End category slider-->
-<section class="banners mb-25">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4 col-md-6">
-                <div class="banner-img wow animate__animated animate__fadeInUp" data-wow-delay="0">
-                    <img src="assets/imgs/banner/banner-1.png" alt="" />
-                    <div class="banner-text">
-                        <h4>
-                            Everyday Fresh & <br />Clean with Our<br />
-                            Products
-                        </h4>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="banner-img wow animate__animated animate__fadeInUp" data-wow-delay=".2s">
-                    <img src="assets/imgs/banner/banner-2.png" alt="" />
-                    <div class="banner-text">
-                        <h4>
-                            Make your Breakfast<br />
-                            Healthy and Easy
-                        </h4>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 d-md-none d-lg-flex">
-                <div class="banner-img mb-sm-0 wow animate__animated animate__fadeInUp" data-wow-delay=".4s">
-                    <img src="assets/imgs/banner/banner-3.png" alt="" />
-                    <div class="banner-text">
-                        <h4>The best Organic <br />Products Online</h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 <!--End banners-->
 <section class="product-tabs section-padding position-relative">
     <div class="container">
-        <div class="section-title style-2 wow animate__animated animate__fadeIn">
-            <h3>Popular Products</h3>
+        <div class="section-title style-2 wow animate__animated animate__fadeIn d-flex justify-content-center ">
+            @if($products->isEmpty())
+            <div class="alert alert-warning">
+                No Product Found Matching To Your Search {{$searchQuery}}
+            </div>
+            @else
+            <h3>Searched Products</h3>
+            @endif
         </div>
         <!--End nav-tabs-->
         <div class="tab-content" id="myTabContent">
@@ -3463,90 +3309,7 @@
 
 </main>
 <footer class="main">
-    <section class="newsletter mb-15">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="position-relative newsletter-inner">
-                        <div class="newsletter-content">
-                            <h2 class="mb-20">
-                                Stay home & get your daily <br />
-                                needs from our shop
-                            </h2>
-                            <p class="mb-45">Start You'r Daily Shopping with <span class="text-brand">Nest Mart</span></p>
-                            <form class="form-subcriber d-flex">
-                                <input type="email" placeholder="Your emaill address" />
-                                <button class="btn" type="submit">Subscribe</button>
-                            </form>
-                        </div>
-                        <img src="{{ asset('assets/imgs/banner/banner-9.png') }}" alt="newsletter" />
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="featured section-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-1-5 col-md-4 col-12 col-sm-6 mb-md-4 mb-xl-0">
-                    <div class="banner-left-icon d-flex align-items-center wow fadeIn animated">
-                        <div class="banner-icon">
-                            <img src="{{ asset('assets/imgs/theme/icons/icon-1.svg') }}" alt="" />
-                        </div>
-                        <div class="banner-text">
-                            <h3 class="icon-box-title">Best prices & offers</h3>
-                            <p>Orders $50 or more</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
-                    <div class="banner-left-icon d-flex align-items-center wow fadeIn animated">
-                        <div class="banner-icon">
-                            <img src="{{ asset('assets/imgs/theme/icons/icon-2.svg') }}" alt="" />
-                        </div>
-                        <div class="banner-text">
-                            <h3 class="icon-box-title">Free delivery</h3>
-                            <p>24/7 amazing services</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
-                    <div class="banner-left-icon d-flex align-items-center wow fadeIn animated">
-                        <div class="banner-icon">
-                            <img src="{{ asset('assets/imgs/theme/icons/icon-3.svg') }}" alt="" />
-                        </div>
-                        <div class="banner-text">
-                            <h3 class="icon-box-title">Great daily deal</h3>
-                            <p>When you sign up</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
-                    <div class="banner-left-icon d-flex align-items-center wow fadeIn animated">
-                        <div class="banner-icon">
-                            <img src="{{ asset('assets/imgs/theme/icons/icon-4.svg') }}" alt="" />
-                        </div>
-                        <div class="banner-text">
-                            <h3 class="icon-box-title">Wide assortment</h3>
-                            <p>Mega Discounts</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-lg-1-5 col-md-4 col-12 col-sm-6 d-xl-none">
-                    <div class="banner-left-icon d-flex align-items-center wow fadeIn animated">
-                        <div class="banner-icon">
-                            <img src="{{ asset('assets/imgs/theme/icons/icon-6.svg') }}" alt="" />
-                        </div>
-                        <div class="banner-text">
-                            <h3 class="icon-box-title">Safe delivery</h3>
-                            <p>Within 30 days</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+
     <section class="section-padding footer-mid">
         <div class="container pt-15 pb-20">
             <div class="row">
