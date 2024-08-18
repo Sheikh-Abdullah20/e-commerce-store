@@ -172,8 +172,7 @@
                                                         class="col-md-6 d-flex justify-content-center align-items-center">
                                                         <h4>Edit Details</h4>
                                                     </div>
-                                                    <div
-                                                        class="col-md-6 d-flex justify-content-center align-items-center my-3">
+                                                    <div class="col-md-6 d-flex justify-content-center align-items-center my-3">
                                                         <figure class="text-lg-center">
                                                             @isset($user->profile)
                                                             <img class="img-lg mb-3 img-avatar" id="image"
@@ -191,6 +190,7 @@
                                                                         class="icons material-icons md-backup font-md"></i>
                                                                     Upload </button>
                                                             </figcaption>
+                                                        </figure>
                                                     </div>
                                                 </div>
 

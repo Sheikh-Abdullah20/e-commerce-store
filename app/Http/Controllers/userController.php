@@ -136,4 +136,27 @@ class userController extends Controller
             return redirect()->route('home')->with('success','Password Updated Successfully');
         }
     }
+
+    // Startup Profile Checker
+    public function profileCheck(Request $request){
+        $request->validate([
+            'profile' => 'required'
+        ]);
+        if($request->hasFile('profile')){
+            $id = Auth::user()->id;
+            $user = User::find($id);
+            if($user){
+               $update =  $user->update([
+                    'profile' => $request->file('profile')->store('profile','public'),
+                ]);
+                if($update){
+                    return redirect()->route('home')->with('success','Profile Has Been Added Successfully');
+                }else{
+                    return redirect()->route('home')->with('error','Something Went Wrong During Update');
+                }
+            }else{
+                return redirect()->route('home')->with('error','Something Went Wrong');
+            }
+        }
+    }
 }
