@@ -123,7 +123,7 @@
                                     <a href="{{ route('myaccount.profile') }}">
                                      <img class="img-xs rounded-circle" src="{{ asset('storage/' . $user->profile) }}" style="max-width: 40px !important; object-fit: cover"/>
                                     </a>
-                                    <a href="{{ route('myaccount.profile') }}"><span class="lable ml-0">Account</span></a>
+                                    <a href="{{ route('myaccount.profile') }}"><span class="lable ml-0 mx-2">{{ Auth()->user()->name }}</span></a>
                                     <div class="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
                                         <ul>
                                             <li>
