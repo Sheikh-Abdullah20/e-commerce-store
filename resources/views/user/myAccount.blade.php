@@ -358,10 +358,11 @@
             </h2>
             <p class="mb-45">Start You'r Daily Shopping with <span class="text-brand">Nest
                     Mart</span></p>
-            <form class="form-subcriber d-flex">
-                <input type="email" placeholder="Your emaill address" />
-                <button class="btn" type="submit">Subscribe</button>
-            </form>
+                    <form class="form-subcriber d-flex" action="{{ route('subscription.mail') }}" method="POST"> 
+                        @csrf
+                        <input type="email" placeholder="Your emaill address" name="subsriptionMail" />
+                        <button class="btn" type="submit">Subscribe</button>
+                    </form>
         </div>
         <img src="{{ asset('assets/imgs/banner/banner-9.png') }}" alt="newsletter" />
     </div>

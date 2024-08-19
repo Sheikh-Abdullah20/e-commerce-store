@@ -27,6 +27,7 @@ Route::middleware('auth')->group(function () {
         Route::put('/myaccount/update/profile',[userController::class, 'updateAccount'])->name('update.profile');
         Route::put('/myaccount/update/password',[userController::class, 'updatePassword'])->name('update.password');
         Route::put('/profile/check',[userController::class, 'profileCheck'])->name('profile.check');
+        Route::post('subscription/mail',[userController::class, 'subscriptionMail'])->name('subscription.mail');
     });
 
     // Admin Routes

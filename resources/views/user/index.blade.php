@@ -229,8 +229,9 @@
                             grocery deals
                         </h1>
                         <p class="mb-65">Sign up for the daily newsletter</p>
-                        <form class="form-subcriber d-flex">
-                            <input type="email" placeholder="Your emaill address" />
+                        <form class="form-subcriber d-flex" action="{{ route('subscription.mail') }}" method="POST"> 
+                            @csrf
+                            <input type="email" placeholder="Your emaill address" name="subsriptionMail" />
                             <button class="btn" type="submit">Subscribe</button>
                         </form>
                     </div>
@@ -243,8 +244,9 @@
                             Big discount
                         </h1>
                         <p class="mb-65">Save up to 50% off on your first order</p>
-                        <form class="form-subcriber d-flex">
-                            <input type="email" placeholder="Your emaill address" />
+                        <form class="form-subcriber d-flex" action="{{ route('subscription.mail') }}" method="POST"> 
+                            @csrf
+                            <input type="email" placeholder="Your emaill address" name="subsriptionMail" />
                             <button class="btn" type="submit">Subscribe</button>
                         </form>
                     </div>
@@ -3477,8 +3479,9 @@
                                 needs from our shop
                             </h2>
                             <p class="mb-45">Start You'r Daily Shopping with <span class="text-brand">Nest Mart</span></p>
-                            <form class="form-subcriber d-flex">
-                                <input type="email" placeholder="Your emaill address" />
+                            <form class="form-subcriber d-flex" action="{{ route('subscription.mail') }}" method="POST"> 
+                                @csrf
+                                <input type="email" placeholder="Your emaill address" name="subsriptionMail" />
                                 <button class="btn" type="submit">Subscribe</button>
                             </form>
                         </div>

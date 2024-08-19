@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SubscriptionMail;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Subscription;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 
 
@@ -157,6 +160,27 @@ class userController extends Controller
             }else{
                 return redirect()->route('home')->with('error','Something Went Wrong');
             }
+        }
+    }
+
+    public function subscriptionMail(Request $request){
+        $request->validate([
+            'subsriptionMail' => 'required|email'
+        ]);
+        $email = $request->subsriptionMail;
+        $user = User::where('email',$email)->first();
+        if($user){
+            $subscription = Subscription::create([
+                'email' => $request->subsriptionMail
+            ]);
+            if($subscription){
+                $mail = Mail::to($email)->send(new SubscriptionMail);
+                return redirect()->route('home')->with('success','Thanks for your subscription ' . Auth::user()->name);
+            }else{
+                return redirect()->route('home')->with('error','Something Went Wrong');
+            }
+        }else{
+            return redirect()->route('home')->with('error','This Email is not registered Please Insert Registered Email Thanks..');
         }
     }
 }
