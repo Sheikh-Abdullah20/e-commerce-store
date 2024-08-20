@@ -130,6 +130,10 @@
                                                 <a href="{{ route('myaccount.profile') }}"><i class="fi fi-rs-user mr-10"></i>My
                                                     Account</a>
                                             </li>
+
+                                            <li>
+                                                <a href="{{ route('order.myorder',$user->id) }}"> <i class="fi fi-rs-location-alt mr-10"></i> My Orders</a>
+                                            </li>
                                          
                                           
                                             <li>

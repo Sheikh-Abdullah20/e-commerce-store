@@ -3,10 +3,12 @@
 use App\Http\Controllers\adminController;
 use App\Http\Controllers\AllUserController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\userController;
 use Illuminate\Support\Facades\Route;
+
 
 
 
@@ -28,6 +30,8 @@ Route::middleware('auth')->group(function () {
         Route::put('/myaccount/update/password',[userController::class, 'updatePassword'])->name('update.password');
         Route::put('/profile/check',[userController::class, 'profileCheck'])->name('profile.check');
         Route::post('subscription/mail',[userController::class, 'subscriptionMail'])->name('subscription.mail');
+        Route::post('cart/orderplace/success',[userController::class, 'orderplace'])->name('order.place');
+        Route::get('myorders/{id}',[userController::class, 'myorder'])->name('order.myorder');
     });
 
     // Admin Routes
@@ -36,6 +40,7 @@ Route::middleware('auth')->group(function () {
             Route::resource('/users',AllUserController::class);
             Route::resource('/categories',CategoryController::class);
             Route::resource('/products',ProductController::class);
+            Route::resource('/orders',OrderController::class);
     }); 
 
 });

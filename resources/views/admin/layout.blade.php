@@ -68,6 +68,13 @@
                         </a>
                     </li>
 
+                    <li class="menu-item {{ Request()->is('orders.index') ? 'active' : '' }}">
+                        <a class="menu-link" href="{{ route('orders.index') }}">
+                            <i class="icon material-icons md-shopping_cart"></i>
+                            <span class="text">Orders</span>
+                        </a>
+                    </li>
+
                   
                 </ul>    
             </nav>

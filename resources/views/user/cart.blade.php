@@ -116,6 +116,10 @@
                                 <!-- End Gallery -->
                             </div>
                             <div class="col-md-6 col-sm-12 col-xs-12">
+                                <form action="{{ route('order.place') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" value="{{ $product->product_name }}" name="product_name">
+                                    <input type="hidden" value="{{ $product->id }}" name="product_id">
                                 <div class="detail-info pr-30 pl-30">
                                     <span class="stock-status out-stock"> Sale Off </span>
                                     <h2 class="title-detail">{{ $product->product_name }}</h2>
@@ -129,7 +133,7 @@
                                     </div>
                                     <div class="clearfix product-price-cover">
                                         <div class="product-price primary-color float-left">
-                                            <span class="current-price text-brand">${{ $product->product_price }}</span>
+                                            <input  readonly class="current-price text-brand" value="${{ $product->product_price }}" name="product_price" style="border: none" >
                                         </div>
                                     </div>
                                     <div class="short-desc mb-30">
@@ -137,40 +141,41 @@
                                     </div>
                                     <div class="attr-detail attr-size mb-30">
                                         <strong class="mr-10">Size / Weight: </strong>
-                                        <ul class="list-filter size-filter font-small">
-                                            <li><a href="#">50g</a></li>
-                                            <li class="active"><a href="#">60g</a></li>
-                                            <li><a href="#">80g</a></li>
-                                            <li><a href="#">100g</a></li>
-                                            <li><a href="#">150g</a></li>
-                                        </ul>
+                                        <select class="list-filter form-select w-25 size-filter font-small" name="product_weight">
+                                            <option value="50g">50g</option>
+                                            <option value="60g" class="active">60g</option>
+                                            <option value="80g">80g</option>
+                                            <option value="100g">100g</option>
+                                            <option value="150g">150g</option>
+                                        </select>
                                     </div>
+
                                     <div class="detail-extralink mb-50">
+                                        
                                         <div class="detail-qty border radius">
                                             <a href="#" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
-                                            <input type="text" name="quantity" class="qty-val" value="1" min="1">
+                                            <input type="text" name="product_qty" class="qty-val" value="1" min="1">
                                             <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
                                         </div>
                                         <div class="product-extra-link2">
                                             <button type="submit" class="button button-add-to-cart"><i class="fi-rs-shopping-cart"></i>Add to cart</button>
-                                            <a aria-label="Add To Wishlist" class="action-btn hover-up" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
-                                            <a aria-label="Compare" class="action-btn hover-up" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
+                                        </div>
+
+                                        <div class="product-extra-link2 mx-4">
+                                            <button class="btn text-dark">Payment By:</button>
+                                        </div>
+
+                                        <div class="product-extra-link2 ">
+                                            <input type="checkbox" value="cash" class="w-50 mb-0" name="product_purchased_by">
+                                            <label for="cash">Cash</label>
                                         </div>
                                     </div>
-                                    {{-- <div class="font-xs">
-                                        <ul class="mr-50 float-start">
-                                            <li class="mb-5">Type: <span class="text-brand">Organic</span></li>
-                                            <li class="mb-5">MFG:<span class="text-brand"> Jun 4.2024</span></li>
-                                            <li>LIFE: <span class="text-brand">70 days</span></li>
-                                        </ul>
-                                        <ul class="float-start">
-                                            <li class="mb-5">SKU: <a href="#">FWM15VKT</a></li>
-                                            <li class="mb-5">Tags: <a href="#" rel="tag">Snack</a>, <a href="#" rel="tag">Organic</a>, <a href="#" rel="tag">Brown</a></li>
-                                            <li>Stock:<span class="in-stock text-brand ml-5">8 Items In Stock</span></li>
-                                        </ul>
-                                    </div> --}}
                                 </div>
                                 <!-- Detail Info -->
+                                @error('product_purchased_by')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </form>
                             </div>
                         </div>
                         <div class="product-info">

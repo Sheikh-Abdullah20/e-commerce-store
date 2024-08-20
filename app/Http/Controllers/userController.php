@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\SubscriptionMail;
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\Subscription;
 use App\Models\User;
@@ -182,5 +183,41 @@ class userController extends Controller
         }else{
             return redirect()->route('home')->with('error','This Email is not registered Please Insert Registered Email Thanks..');
         }
+    }
+
+
+
+    public function orderplace(Request $request){
+        $request->validate([
+            'product_purchased_by' => 'required'
+        ]);
+        // return $request->all();
+        $user_id = Auth::user()->id;
+        $order = Order::create([
+            'product_name' => $request->product_name,
+            'product_id' => $request->product_id,
+            'product_price' => $request->product_price,
+            'product_weight' => $request->product_weight,
+            'product_qty' => $request->product_qty,
+            'product_purchased_by' => $request->product_purchased_by,
+            'user_id' => $user_id
+        ]);
+        if($order){
+            return redirect()->route('home')->with('success','Order Placed Successfully');
+        }else{
+            return redirect()->route('home')->with('error','Something Went Wrong During Placing An Order');
+        }
+    }
+
+
+
+    public function myorder($id){
+        $user = User::find($id);
+        $orders = Order::with('product')->where('user_id',$id)->get();
+        // foreach($orders as $order){
+        //     $product_image = $order->product->product_image;
+        //     return $product_image;
+        // }
+        return view('user.myOrders',compact('user','orders'));
     }
 }
